@@ -1,15 +1,11 @@
 package minesweeper;
 
-import java.util.Scanner;
-
-/**@author Paulius*/
-public class MinesweeperSwingMain
+public class Main
 {
     public static void main(String[] args) 
     {
-        GameBoard board = new GameBoard(9,9,10);
-        GameLogic logic = new GameLogic(board);
-        MinesweeperSwingRender render = new MinesweeperSwingRender(board, logic);
-        render.render();
+        GameFactory factory = new GameFactory();
+        Game game = factory.getGame("GUI");
+        game.launch();
     }
 }

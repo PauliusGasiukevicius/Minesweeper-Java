@@ -1,6 +1,5 @@
 package minesweeper;
 
-/**@author Paulius*/
 public class GameLogic 
 {
     private GameBoard board;
@@ -32,7 +31,7 @@ public class GameLogic
     
     public void openZeroCells(int r, int c)
     {
-        if(!board.isValid(r, c) || board.getCellState(r, c)==CELL.OPEN)return;
+        if(!board.isValidCell(r, c) || board.getCellState(r, c)==CELL.OPEN)return;
         openCell(r,c);
         if(board.cellNeighbouringMinesCount(r, c)!=0)return;
         
@@ -45,7 +44,7 @@ public class GameLogic
     
     public void processClick(int r, int c)
     {
-        if(!board.isValid(r, c))return;
+        if(!board.isValidCell(r, c))return;
         CELL current = board.getCellState(r, c);
         
         switch(current)
@@ -65,7 +64,7 @@ public class GameLogic
     
     public void processFlagClick(int r, int c)
     {
-        if(!board.isValid(r, c))return;
+        if(!board.isValidCell(r, c))return;
         CELL current = board.getCellState(r, c);
         
         switch(current)

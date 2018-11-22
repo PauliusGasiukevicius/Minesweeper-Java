@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-/** @author Paulius*/
 public class GameBoard 
 {
     private int width, height, mineCount;
@@ -45,7 +44,7 @@ public class GameBoard
         board[r][c]=state;
     }
     
-    public boolean isValid(int r, int c)
+    public boolean isValidCell(int r, int c)
     {
         return r>=0 && c>=0 && r<height && c<width;
     }
@@ -74,7 +73,7 @@ public class GameBoard
         int[] dc = {0,-1,0,1,-1,1,-1,1};
         
         for(int k=0; k<dr.length; k++)
-            if(isValid(r+dr[k], c+dc[k]) && (getCellState(r+dr[k], c+dc[k])==CELL.MINE || getCellState(r+dr[k], c+dc[k])==CELL.FLAGM || getCellState(r+dr[k], c+dc[k])==CELL.EXPLOSION))
+            if(isValidCell(r+dr[k], c+dc[k]) && (getCellState(r+dr[k], c+dc[k])==CELL.MINE || getCellState(r+dr[k], c+dc[k])==CELL.FLAGM || getCellState(r+dr[k], c+dc[k])==CELL.EXPLOSION))
                 count++;
         
         return count;
