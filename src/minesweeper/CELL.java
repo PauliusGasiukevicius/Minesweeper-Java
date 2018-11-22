@@ -1,7 +1,6 @@
 package minesweeper;
 
-public enum CELL
-{
+public enum CELL {
     EMPTY,
     MINE,
     FLAG,
