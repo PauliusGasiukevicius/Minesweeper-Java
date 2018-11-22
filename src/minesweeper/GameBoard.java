@@ -58,13 +58,18 @@ public class GameBoard {
         return height;
     }
 
+    public boolean isCellMined(int r, int c) {
+        CELL state = getCellState(r, c);
+        return state == CELL.EXPLOSION || state == CELL.FLAGM || state == CELL.MINE;
+    }
+
     public int cellNeighbouringMinesCount(int r, int c) {
         int count = 0;
         int[] dr = {-1, 0, 1, 0, -1, -1, 1, 1};
         int[] dc = {0, -1, 0, 1, -1, 1, -1, 1};
 
         for (int k = 0; k < dr.length; k++) {
-            if (isValidCell(r + dr[k], c + dc[k]) && (getCellState(r + dr[k], c + dc[k]) == CELL.MINE || getCellState(r + dr[k], c + dc[k]) == CELL.FLAGM || getCellState(r + dr[k], c + dc[k]) == CELL.EXPLOSION)) {
+            if (isValidCell(r + dr[k], c + dc[k]) && isCellMined(r + dr[k], c + dc[k])) {
                 count++;
             }
         }

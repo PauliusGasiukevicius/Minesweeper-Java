@@ -34,6 +34,7 @@ public class GUIGame extends Game {
 
             default:
                 System.exit(0);
+                break;
         }
     }
 

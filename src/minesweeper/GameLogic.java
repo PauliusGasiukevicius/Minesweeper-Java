@@ -25,20 +25,24 @@ public class GameLogic {
         cellsLeftToOpen--;
     }
 
+    public boolean canOpenNeighbour(int r, int c) {
+        return board.isValidCell(r, c) && board.cellNeighbouringMinesCount(r, c) == 0 && !board.isCellMined(r, c);
+    }
+
     public void openZeroCells(int r, int c) {
         if (!board.isValidCell(r, c) || board.getCellState(r, c) == CELL.OPEN) {
             return;
         }
         openCell(r, c);
-        if (board.cellNeighbouringMinesCount(r, c) != 0) {
-            return;
-        }
+        boolean openAll = board.cellNeighbouringMinesCount(r, c) == 0;
 
         int[] dr = {-1, 0, 1, 0, -1, -1, 1, 1};
         int[] dc = {0, -1, 0, 1, -1, 1, -1, 1};
 
         for (int k = 0; k < dr.length; k++) {
-            openZeroCells(r + dr[k], c + dc[k]);
+            if (openAll || canOpenNeighbour(r + dr[k], c + dc[k])) {
+                openZeroCells(r + dr[k], c + dc[k]);
+            }
         }
     }
 
