@@ -110,6 +110,10 @@ public class GUIGame extends Game {
                 case OPEN:
                     int neighbouringMines = board.cellNeighbouringMinesCount(r, c);
                     if (neighbouringMines == 0) {
+                        JLabel jl = (JLabel) p.getComponents()[0];
+                        jl.setText("");
+                        jl.setForeground(Color.BLACK);
+                        p.add(jl);
                         p.setBackground(Color.WHITE);
                     } else {
                         JLabel jl = (JLabel) p.getComponents()[0];
